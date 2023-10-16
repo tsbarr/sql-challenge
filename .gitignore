@@ -1,0 +1,10 @@
+# ---
+
+# using mac
+.DS_Store
+# vs code settings
+.vscode
+# my temp code dumps
+.dump*
+# Adding config.py file.
+api_keys.py
