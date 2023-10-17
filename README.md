@@ -4,6 +4,12 @@
 
 ---
 
+- [Background](#background)
+- [Instructions](#instructions)
+  - [Data Modeling (10 points)](#data-modeling-10-points)
+  - [Data Engineering (70 points)](#data-engineering-70-points)
+  - [Data Analysis (20 points)](#data-analysis-20-points)
+
 ---
 
 This repo contains my work for the challenge that corresponds to Module 9 of the UofT SCS edX Data Bootcamp.
