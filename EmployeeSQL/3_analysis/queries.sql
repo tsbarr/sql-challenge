@@ -40,7 +40,7 @@ INNER JOIN employees e
 
 -- 4. List the department number for each employee along with that employee’s employee number, last name, first name, and department name (2 points).
 SELECT
-    d.dept_no
+	d.dept_no
     , e.emp_no
     , e.last_name
     , e.first_name
@@ -50,6 +50,8 @@ INNER JOIN departments AS d
     ON d.dept_no = de.dept_no
 INNER JOIN employees AS e
     ON e.emp_no = de.emp_no
+-- to make it evident when an emp has more than one dept
+ORDER BY e.emp_no 
 ;
 
 -- 5. List first name, last name, and sex of each employee whose first name is Hercules and whose last name begins with the letter B (2 points).
