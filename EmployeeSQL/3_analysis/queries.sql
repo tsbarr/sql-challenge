@@ -2,23 +2,26 @@
 
 -- 1. List the employee number, last name, first name, sex, and salary of each employee (2 points).
 SELECT
-    e.emp_no
-    , e.last_name
-    , e.first_name
-    , e.sex
-    , s.salary
-FROM employees AS e
-INNER JOIN salaries AS s
-    ON e.emp_no = s.emp_no
+    emp_no
+    , last_name
+    , first_name
+    , sex
+    , (
+        SELECT salary
+        FROM salaries s
+        WHERE s.emp_no = e.emp_no
+    ) AS salary
+FROM employees e
 ;
 
 -- 2. List the first name, last name, and hire date for the employees who were hired in 1986 (2 points).
+-- How to get year from date in Postgresql: https://www.prisma.io/dataguide/postgresql/date-types
 SELECT
     first_name
     , last_name
     , hire_date
 FROM employees
-WHERE -- hired in 1986
+WHERE DATE_PART('year', hire_date) = 1986
 ;
 
 -- 3. List the manager of each department along with their department number, department name, employee number, last name, and first name (2 points).
@@ -28,10 +31,10 @@ SELECT
     , e.emp_no
     , e.last_name
     , e.first_name
-FROM dept_manager AS dm
-INNER JOIN departments AS d
+FROM dept_manager dm
+INNER JOIN departments d
     ON d.dept_no = dm.dept_no
-INNER JOIN employees AS e
+INNER JOIN employees e
     ON e.emp_no = dm.emp_no
 ;
 
