@@ -5,10 +5,14 @@
 ---
 
 - [Background](#background)
-- [Instructions](#instructions)
+- [Instructions and Summary of Results](#instructions-and-summary-of-results)
   - [Data Modeling (10 points)](#data-modeling-10-points)
+    - [Modeling Results](#modeling-results)
   - [Data Engineering (70 points)](#data-engineering-70-points)
+    - [Engineering Results](#engineering-results)
   - [Data Analysis (20 points)](#data-analysis-20-points)
+    - [Analysis Results](#analysis-results)
+- [References](#references)
 
 ---
 
@@ -22,16 +26,21 @@ It’s been two weeks since you were hired as a new data engineer at Pewlett Hac
 
 For this project, you’ll design the tables to hold the data from the CSV files, import the CSV files into a SQL database, and then answer questions about the data. That is, you’ll perform data modeling, data engineering, and data analysis, respectively.
 
-## Instructions
+## Instructions and Summary of Results
 
-This Challenge is divided into three parts: data modeling, data engineering, and data analysis.
+This Challenge is divided into three parts: data modeling, data engineering, and data analysis. Each part's results are in a separate folder within the EmployeeSQL folder.
 
 ### Data Modeling (10 points)
 
 Inspect the CSV files, and then sketch an Entity Relationship Diagram of the tables. To create the sketch, feel free to use a tool like [QuickDBD](https://www.quickdatabasediagrams.com/).
 
-> **Requirement:**  
-> Entity Relationship Diagram is included or table schemas provided for all tables (10 points)
+#### Modeling Results
+
+Entity Relationshop Diagram:
+
+![EmployeeSQL/1_modeling/QuickDBD-EmployeeSQL.png](EmployeeSQL/1_modeling/QuickDBD-EmployeeSQL.png)
+
+Detailed documentation is also included as a pdf [here](EmployeeSQL/1_modeling/QuickDBD-EmployeeSQL.pdf).
 
 ### Data Engineering (70 points)
 
@@ -45,16 +54,18 @@ Inspect the CSV files, and then sketch an Entity Relationship Diagram of the tab
 
 2. Import each CSV file into its corresponding SQL table.
 
-> **Hint:** To avoid errors, import the data in the same order as the corresponding tables got created. And, remember to account for the headers when doing the imports.
+#### Engineering Results
 
-> **Requirements:**
-> - All required columns are defined for each table (10 points)
-> - Columns are set to the correct data type (10 points)
-> - Primary Keys set for each table (10 points)
-> - Correctly references related tables (10 points)
-> - Tables are correctly related using Foreign Keys (10 points)
-> - Correctly uses NOT NULL condition on necessary columns (10 points)
-> - Accurately defines value length for columns (10 points)
+The schema is included in this file: [EmployeeSQL/2_engineering/schema.sql](EmployeeSQL/2_engineering/schema.sql)
+
+Here, I defined each of the six tables, including:
+- All required columns
+- Data type for each column, including relevant value lengths for those of type `VARCHAR`. Note that dates are defined as Date type. 
+- Unique primary keys, as well as including `UNIQUE` constraints when relevant (i.e. title and department names)
+- Foreign keys and to what table they are related.
+- When necessary, the `NOT NULL` condition is set, to avoid data errors.
+
+The tables are defined in the following order, to avoid errors related to referenced tables and foreign keys: (1) departments, (2) titles, (3) employees, (4) dept_emp, (5) dept_manager, (6) salaries. This is also the order in which the data is inputted into the database.
 
 ### Data Analysis (20 points)
 
@@ -73,3 +84,23 @@ Inspect the CSV files, and then sketch an Entity Relationship Diagram of the tab
 7. List each employee in the Sales and Development departments, including their employee number, last name, first name, and department name (4 points).
 
 8. List the frequency counts, in descending order, of all the employee last names (that is, how many employees share each last name) (4 points).
+
+#### Analysis Results
+
+All eight queries are included in the file: [EmployeeSQL/3_analysis/queries.sql](EmployeeSQL/3_analysis/queries.sql)
+
+They were all tested with the provided data to ensure correct results.
+
+--
+
+## References
+
+Challenge instructions and input data files, as well as some code sections that were adapted from the UofT SCS EdX Data Bootcamp class activities:
+
+© 2022 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
+Some other code sections were adapted from other sources, specific explanations are found within the code comments:
+
+| Purpose | Link |
+| :- | :- |
+| How to get year from date type in Postgresql | [Link](https://www.prisma.io/dataguide/postgresql/date-types) |
